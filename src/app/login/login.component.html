@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand mb-0 h1">Expense Splitter</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/signup']">Sign Up<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+</nav>
+ 
+    <br><br>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-md-6">
+                <h2 class="form-signin-heading">Please Log In</h2>
+                <br>
+                <form >
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input [(ngModel)]='email' name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      <small id="emailHelp" class="form-text text-muted">Your friends will be easily able to recognise you.</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input [(ngModel)]='password' name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+                    </div>
+                    <button  class="btn btn-primary" (click)='loginFunc()'>Log In</button>
+                </form>
+                <br>
+                <a href="#">Forgot Password ?</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

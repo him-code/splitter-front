@@ -1,0 +1,71 @@
+<body>
+    <nav id="navbar" class="navbar navbar-expand-md navbar-dark bg-dark mx-0">
+        <a class="navbar-brand mb-0 h1">Expense Splitter</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/signup']">Home<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section class="container-fluid px-0 mx-0">
+        <div class="row content">
+            <div class="col-sm-4 col-md-3" id="sidebar">
+                <h3 class="p-1" id="sidebarHeading">Group Name</h3>
+                <br>
+                <ul>
+                    <li><a href="">New Expense</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-8 col-md-9" id="mainContent">
+                <h2 class="p-2">Pending Amounts</h2>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h5 class="p-2">To Receive - </h5>
+                        <p *ngIf='toReceive.length===0'>Currently no One in this List.</p>
+                        <div *ngIf='toReceive.length>0'>
+                            <div class="list-group" *ngFor='let person of toReceive'>
+                                <a class="list-group-item list-group-item-action list-group-item-success">{{person.name}} - {{person.amount}}</a>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5 class="p-2">To Give - </h5>
+                        <p *ngIf='toGive.length===0'>Currently no One in this List.</p>
+                        <div *ngIf='toGive.length>0'>
+                            <div class="list-group" *ngFor='let person of toGive'>
+                                <a class="list-group-item list-group-item-action list-group-item-danger">{{person.name}} - {{person.amount}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <h2 class="p-2">All Expenses - </h2>
+                <div class="p-2" *ngIf="array1.length==0">
+                    <p>There are currently no expenses added in this group.</p>
+                </div>
+                <section *ngFor='let obj of array1'>
+                    <div *ngIf='obj.position==="right"' class="row justify-content-end p-2">
+                        <div class="col-md-2 text-right">
+                            <button type="button" class="btn btn-primary">
+                                Ankit <span class="badge badge-light">{{obj.value}}</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div *ngIf='obj.position==="left"' class="row justify-content-start p-2">
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary">
+                                Ankit <span class="badge badge-light">{{obj.value}}</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</body>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand mb-0 h1">Expense Splitter</a>
+    </nav>
+ 
+    <br><br>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-md-6">
+                <h2 class="form-signin-heading">Set New Password</h2>
+                <br>
+                <form>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input [(ngModel)]='password' name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter New Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword2">Confirm</label>
+                        <input [(ngModel)]='passwordConfirm' name="confirm" type="password" class="form-control" id="exampleInputPassword2" placeholder="Enter Password Again">
+                    </div>
+                    <button type="submit" class="btn btn-success" (click)='resetFunc()'>Reset Password</button>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

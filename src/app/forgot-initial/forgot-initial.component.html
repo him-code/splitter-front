@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand mb-0 h1">Expense Splitter</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/login']">Back<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+</nav>
+ 
+    <br><br>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-md-6">
+                <h2 class="form-signin-heading">Password Reset</h2>
+                <br>
+                <form >
+                    <div class="form-group">
+                      <label for="recoveryEmail">Email address</label>
+                      <input [(ngModel)]='email' name="recoveryEmail" type="email" class="form-control" id="recoveryEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                      <small id="emailHelp" class="form-text text-muted">We will send you an Email on your address to reset your password.</small>
+                    </div>
+                    <button type="submit" class="btn btn-success" (click)='startRecoveryFunc()'>Recover</button>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
+
