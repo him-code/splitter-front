@@ -21,6 +21,10 @@ export class AppService {
   countryNames = Object.values(this.countryNamesObject) ;
   countryCodes = Object.values(this.countryCodesObject) ;
 
+  //code for handling current groups data 
+
+  public currentGroup = {} ;
+
 
   constructor(public http : HttpClient) { } 
 
@@ -83,6 +87,18 @@ export class AppService {
 
     return this.http.post(`${this.baseUrl}/create-group` ,body , { headers : headers}) ;
 
-  } // end of signup function 
+  } // end of create group function
+  
+  public setCurrentGroup(element){
+    this.currentGroup = element ;
+  } 
+
+  public getCurrentGroup(){
+    return this.currentGroup ;
+  }
+
+  public resetCurrentGroup(){
+    this.currentGroup = {} ;
+  }
 
 }

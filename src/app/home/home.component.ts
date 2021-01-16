@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router' ;
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from '../app.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private cookie : CookieService,
     private router : Router,
-    private appservice : AppService) { }
+    private appservice : AppService,
+    private toastr : ToastrService) { }
 
   ngOnInit(): void {
     this.xauth = JSON.parse(this.cookie.get('authToken')) ;
@@ -33,6 +35,20 @@ export class HomeComponent implements OnInit {
         console.log('abort get groups api' , apiResponse.message)
       }
     })
+  }
+
+  redirectFunc(group){
+    this.appservice.setCurrentGroup(group) ;
+    this.router.navigate(['group'])
+  }
+
+  logOutFunc(){
+    this.toastr.success('Logging Out' , 'Log out has been initiated')
+    this.cookie.deleteAll('/')
+    setTimeout(() => {
+      this.router.navigate(['login'])  
+    },2005);
+    
   }
 }
 

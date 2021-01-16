@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Router} from '@angular/router' ;
+import { CookieService } from 'ngx-cookie-service';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-group',
@@ -68,13 +71,24 @@ export class GroupComponent implements OnInit {
    }
  ]
  
- 
 
- 
 
-  constructor() { }
+  public groupData = {} ;
+
+  constructor(private router : Router,
+    private cookie : CookieService,
+    private appservice : AppService) { }
 
   ngOnInit(): void {
+    this.groupData = this.appservice.getCurrentGroup() ;
+    console.log(this.groupData) ;
+  }
+
+
+
+  ngOnDestroy() : void{
+    this.appservice.resetCurrentGroup() ;
+    console.log('current group object of service has been emptied') ;
   }
 
 }
