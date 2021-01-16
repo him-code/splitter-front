@@ -1,0 +1,30 @@
+body{
+    margin: 0px;
+} 
+
+#sidebar{
+    background-color: #D8E2DC;
+} 
+
+/* #mainContent {
+}  */ 
+
+#navbar{
+    min-width: 100vw;
+}
+
+@media (min-width: 576px) {
+    #sidebar{
+        min-height: 100vh;
+    } 
+}
+
+@media (max-width: 899px) {
+    #sidebarHeading{
+        font-size: 1.5rem;
+    } 
+} 
+
+sup :hover{
+    cursor : pointer
+}

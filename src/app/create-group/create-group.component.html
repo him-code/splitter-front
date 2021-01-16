@@ -1,1 +1,60 @@
-<p>create-group works!</p>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand mb-0 h1">Expense Splitter</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/home']">Back<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row content">
+      <div class="col-sm-4 col-md-3" id="sidebar">
+        <h3 class="p-1" id="sidebarHeading">{{groupName | titlecase}}</h3>
+        <br>
+        <p class="p-2">Group Members - </p>
+        <p class="p-2"><span *ngFor='let element of toCreate ; let first=first;let last=last' (click)='removeFromToCreateArray(element)'>{{element['nickName'] | titlecase}} <sup><span class="badge badge-danger">X</span></sup>{{last ? '' : ', '}} </span></p>
+        <br>
+        <div class="p-2">
+          <button type="button" class="btn btn-dark" (click)='createGroupFunc()'>Create Group</button>
+        </div>
+      </div>
+      <div class="col-sm-8 col-md-9">
+        <h2 class="form-signin-heading">Make a group</h2>
+        <br>
+        <form>
+          <div class="form-group">
+            <label for="groupname">Add a name - </label>
+            <input name='groupName' [(ngModel)]='groupName' type="text" class="form-control" id="groupname"
+               placeholder="Enter Name">
+          </div>
+          <div class="form-group">
+            <label for="searchMember">Email address</label>
+            <input name='search' [(ngModel)]='email' type="text" class="form-control" id="searchMember"
+              aria-describedby="emailHelp" placeholder="Enter Email">
+            <small id="emailHelp" class="form-text text-muted">Enter email of your friends to add them to a
+              group</small>
+          </div>
+          <button class="btn btn-primary" (click)='filter()'>Find Friends</button>
+        </form>
+        <br>
+
+        <div class="row justify-content-center" *ngIf='newArray.length>0'>
+          <div class="col-sm-8 col-md-6 justify-content-center">
+            <h5>Click on the people you want to add to the group - </h5>
+            <div class="list-group" *ngFor='let el of newArray'>
+              <a (click)='addToCreateArray(el)'
+                class="list-group-item list-group-item-action list-group-item-info">{{el['nickName']}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

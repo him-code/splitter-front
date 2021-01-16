@@ -17,6 +17,7 @@ import { CreateExpenseComponent } from './create-expense/create-expense.componen
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
       {path : 'login' , component: LoginComponent , pathMatch: 'full'},
@@ -42,6 +44,7 @@ import { ToastrModule } from 'ngx-toastr';
       {path : 'expense' , component : ExpenseComponent , pathMatch : 'full'},
       {path : 'forgotInitial' , component : ForgotInitialComponent , pathMatch : 'full'},
       {path : 'forgotFinal' , component : ForgotFinalComponent , pathMatch : 'full'},
+      {path : 'createGroup' , component : CreateGroupComponent , pathMatch : 'full'},
       {path: '' , redirectTo: 'login' , pathMatch: 'full'},
       {path: '*' , component : LoginComponent},
       {path: '**' , component : LoginComponent}
@@ -53,7 +56,7 @@ import { ToastrModule } from 'ngx-toastr';
       positionClass: 'toast-bottom-full-width'
     })
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

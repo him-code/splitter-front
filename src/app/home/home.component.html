@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/signup']">Log Out<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" [routerLink]="['/login']">Log Out<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
@@ -16,10 +16,10 @@
     <section class="container-fluid px-0 mx-0">
         <div class="row content">
             <div class="col-sm-4 col-md-3" id="sidebar">
-                <h3 class="p-1" id="sidebarHeading">Welcome Him</h3>
+                <h3 class="p-1" id="sidebarHeading">Welcome {{nickName | titlecase}}</h3>
                 <br>
                 <ul>
-                    <li><a href="">New Group</a></li>
+                    <li><a [routerLink]="['/createGroup']">New Group</a></li>
                 </ul>
             </div>
             <div class="col-sm-8 col-md-9" id="mainContent">
@@ -31,10 +31,11 @@
                 </p>
                 <div class="row">
                     <div class="col-md-6 col-sm-8">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action list-group-item-info">Group 1</a>
-                            <a href="#" class="list-group-item list-group-item-action list-group-item-info">Group 2</a>
-                            <a href="#" class="list-group-item list-group-item-action list-group-item-info">Group 3</a>
+                        <h4 class="p-2" *ngIf='myGroups.length===0'>You have no groups at the moment.</h4>
+                        <div *ngIf='myGroups.length>0'>
+                            <div class="list-group" *ngFor='let group of myGroups'>
+                                <a href="#" class="list-group-item list-group-item-action list-group-item-info">{{group.groupName}}</a>
+                            </div>
                         </div>
                     </div>
                 </div>

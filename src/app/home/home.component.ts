@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router' ;
+import { CookieService } from 'ngx-cookie-service';
+import { AppService } from '../app.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  private xauth : any ;
+  public nickName : any ;
+  public myGroups = [] ;
+
+  constructor(private cookie : CookieService,
+    private router : Router,
+    private appservice : AppService) { }
 
   ngOnInit(): void {
+    this.xauth = JSON.parse(this.cookie.get('authToken')) ;
+    this.appservice.getGroups(this.xauth)
+    .subscribe((apiResponse) => {
+      if(apiResponse.status === 200){
+        console.log('success get groups api , here is the data ' , apiResponse.data)
+        this.nickName = apiResponse.data.user.nickName ; 
+        let temp = apiResponse.data.groups.map(x => x) ;
+        this.myGroups = temp ;
+        console.log('',this.myGroups)
+      }else{
+        console.log('abort get groups api' , apiResponse.message)
+      }
+    })
   }
-
 }
+
