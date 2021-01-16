@@ -87,7 +87,11 @@ export class AppService {
 
     return this.http.post(`${this.baseUrl}/create-group` ,body , { headers : headers}) ;
 
-  } // end of create group function
+  } // end of create group function 
+
+
+
+  //creating groups is over , now working with individual groups 
   
   public setCurrentGroup(element){
     this.currentGroup = element ;
@@ -99,6 +103,16 @@ export class AppService {
 
   public resetCurrentGroup(){
     this.currentGroup = {} ;
+  } 
+
+  public getSingleGroupInfo(header , groupId) : Observable<any>{
+
+    const headers = new HttpHeaders()
+    .set('xauth',header) 
+
+    return this.http.get(`${this.baseUrl}/group/${groupId}` , {headers : headers})
   }
+
+
 
 }

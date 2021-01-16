@@ -16,7 +16,7 @@
     <section class="container-fluid px-0 mx-0">
         <div class="row content">
             <div class="col-sm-4 col-md-3" id="sidebar">
-                <h3 class="p-1" id="sidebarHeading">Group Name</h3>
+                <h3 class="p-1" id="sidebarHeading">{{groupName}}</h3>
                 <br>
                 <ul>
                     <li><a href="">New Expense</a></li>
@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <h5 class="p-2">To Receive - </h5>
-                        <p *ngIf='toReceive.length===0'>Currently no One in this List.</p>
+                        <p class="p-2" *ngIf='toReceive.length===0'>Currently no One in this List.</p>
                         <div *ngIf='toReceive.length>0'>
                             <div class="list-group" *ngFor='let person of toReceive'>
                                 <a class="list-group-item list-group-item-action list-group-item-success">{{person.name}} - {{person.amount}}</a>
@@ -35,8 +35,8 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <h5 class="p-2">To Give - </h5>
-                        <p *ngIf='toGive.length===0'>Currently no One in this List.</p>
+                        <h5 class="p-2">To Pay - </h5>
+                        <p class="p-2" *ngIf='toGive.length===0'>Currently no One in this List.</p>
                         <div *ngIf='toGive.length>0'>
                             <div class="list-group" *ngFor='let person of toGive'>
                                 <a class="list-group-item list-group-item-action list-group-item-danger">{{person.name}} - {{person.amount}}</a>

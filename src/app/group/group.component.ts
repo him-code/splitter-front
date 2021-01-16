@@ -33,55 +33,31 @@ export class GroupComponent implements OnInit {
       }
  ] 
 
- public toReceive = [
-   {
-    name:'rakesh',
-    amount : 65
-   },
-   {
-    name:'mukesh',
-    amount : 67
-   },
-   {
-    name:'ramesh',
-    amount : 68
-   },
-   {
-    name:'suresh',
-    amount : 69
-   }
- ] 
-
- public toGive = [
-  {
-    name:'rakesh',
-    amount : 658
-   },
-   {
-    name:'mukesh',
-    amount : 679
-   },
-   {
-    name:'ramesh',
-    amount : 686
-   },
-   {
-    name:'suresh bazigar',
-    amount : 69
-   }
- ]
- 
-
-
-  public groupData = {} ;
+ public toReceive = [] ; 
+ public toGive = [] ;
+  public groupData  ;
+  public groupName : 'Group' ;
 
   constructor(private router : Router,
     private cookie : CookieService,
     private appservice : AppService) { }
 
   ngOnInit(): void {
-    this.groupData = this.appservice.getCurrentGroup() ;
-    console.log(this.groupData) ;
+    this.groupData = this.appservice.getCurrentGroup() ; 
+    let id = this.groupData.groupId ;
+    let authToken = JSON.parse(this.cookie.get('authToken')) ;
+    this.appservice.getSingleGroupInfo(authToken , id).subscribe(apiResponse=>{
+      if (apiResponse.status === 200){
+        console.log('group data fetch success')
+        console.log(apiResponse.data)
+        this.groupName = apiResponse.data.group.name ;
+        this.toReceive = apiResponse.data.toReceive ;
+        this.toGive = apiResponse.data.toPay ;
+
+      } else{
+        console.log('error' , apiResponse.messsage)
+      }
+    })
   }
 
 
